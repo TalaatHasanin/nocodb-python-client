@@ -1,1 +1,1 @@
-# nocodb-python-client
+# PyNoco
