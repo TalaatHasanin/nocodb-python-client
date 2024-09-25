@@ -1,4 +1,4 @@
-from pynoco.client import Client
+from pynoco.source import Source
 
 
 class Base:
@@ -7,12 +7,30 @@ class Base:
     """
     def __init__(
             self,
-            client: Client,
-            base_id: str,
-            sources: dict = None,
+            client,
+            id: str,
+            sources: list[dict] = None,
             title: str = None,
             description: str = None,
             created_at: str = None,
-            status: str = None
+            status: str = None,
+            **kwargs
     ):
-        pass
+        self.client = client
+        self.id = id
+        self.title = title
+        self.description = description
+        self.created_at = created_at
+        self.status = status
+        self.sources = sources
+
+
+class Bases:
+    def __init__(self, client):
+        self.api = client.api
+        self.client = client
+
+    def get(self, base_id: str):
+        item = self.api.get(f'/meta/bases/{base_id}').json()
+        return Base(self.client, **item)
+

@@ -23,7 +23,7 @@ class API:
 
         base_url.rstrip('/')
         if not base_url.endswith('/api'):
-            base_url = base_url + '/api'
+            base_url = base_url + '/api/' + self.VERSION
 
         self.api_key = api_key
         self.base_url = base_url
