@@ -1,24 +1,23 @@
-from typing import Union, Any
-
-from pydantic import BaseModel
 
 
-class SourceConfig(BaseModel):
+class Source:
+    def __init__(
+            self,
+            id: str,
+            base_id: str,
+            type: str,
+            inflection_column: str,
+            inflection_table: str,
+            order: int,
+            **kwargs
+    ):
+        self.id = id
+        self.base_id = base_id
+        self.type = type
+        self.inflection_column = inflection_column
+        self.inflection_table = inflection_table
+        self.order = order
+        self.kwargs = kwargs
 
-    id: str
-    base_id: str
-    type: str
-    inflection_column: str
-    inflection_table: str
-    alias: Union[str, None] = None
-    integration_title: Union[str, None] = None
-    fk_integration_id: Union[str, None] = None
-    config: Any
-    enabled: Union[str, bool, None] = None
-    external: bool = False
-
-
-class Source(SourceConfig):
-    pass
 
 

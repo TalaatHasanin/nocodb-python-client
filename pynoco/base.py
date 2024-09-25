@@ -22,7 +22,13 @@ class Base:
         self.description = description
         self.created_at = created_at
         self.status = status
-        self.sources = sources
+        self.kwargs = kwargs
+
+        self.sources = []
+        if sources is not None:
+            for source in sources:
+                src = Source(**source)
+                self.sources.append(src)
 
 
 class Bases:
