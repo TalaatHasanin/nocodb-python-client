@@ -97,7 +97,7 @@ print(client.bases.list())
 
 #### Get a Base by ID
 
-You can fetch details of a base by its name.
+You can fetch details of a base by its id.
 
 ```python
 base = client.bases.get('p#######')
