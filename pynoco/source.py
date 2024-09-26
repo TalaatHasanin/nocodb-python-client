@@ -9,6 +9,7 @@ class Source:
             inflection_column: str,
             inflection_table: str,
             order: int,
+            external: bool = False,
             **kwargs
     ):
         self.id = id
@@ -17,6 +18,7 @@ class Source:
         self.inflection_column = inflection_column
         self.inflection_table = inflection_table
         self.order = order
+        self.external = external
         self.kwargs = kwargs
 
 

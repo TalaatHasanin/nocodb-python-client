@@ -17,6 +17,7 @@ class Base:
             description: str = None,
             created_at: str = None,
             status: str = None,
+            type: str = None,
             **kwargs
     ):
         self.api = client.api
@@ -26,6 +27,7 @@ class Base:
         self.description = description
         self.created_at = created_at
         self.status = status
+        self.type = type
         self.kwargs = kwargs
 
         self.sources = []
@@ -37,6 +39,45 @@ class Base:
     def info(self):
         data = self.api.get(f'/meta/bases/{self.id}/info')
         return data.json()
+
+    def update(
+            self,
+            title: str,
+            order: int,
+            color: str,
+            meta=None,
+            linked_db_project_ids=None,
+            status=None
+    ):
+        payload = {
+            'title': title,
+            'order': order,
+            'color': color,
+            'meta': meta,
+            'status': status
+        }
+
+        if self.type == 'documentation':
+            payload.update({'linked_db_project_ids': linked_db_project_ids})
+
+        self.api.patch(
+            f'/meta/bases/{self.id}',
+            data=payload
+        )
+
+    def add_source(self, source: Union[Source, dict]):
+        if isinstance(source, Source):
+            self.api.post(
+                f'/meta/bases/{self.id}/sources',
+                data=source.__dict__
+            )
+            self.sources.append(source)
+        else:
+            self.api.post(
+                f'/meta/bases/{self.id}/sources',
+                data=source
+            )
+            self.sources.append(Source(**source))
 
     def delete_source(self, source: Union[str, Source]):
         if len(self.sources) > 1:
