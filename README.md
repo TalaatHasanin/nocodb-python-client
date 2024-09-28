@@ -1,5 +1,7 @@
 # PyNoco
 
+![](https://github.com/TalaatHasanin/nocodb-python-client/actions/workflows/deploy.yml/badge.svg)
+[![PyPI](https://img.shields.io/pypi/v/pynoco.svg)](https://pypi.org/project/pynoco/)
 
 A Python client for [NocoDB](https://nocodb.com/), The Open Source Airtable Alternative. 
 This library provides an easy-to-use interface for interacting with NocoDB's API, allowing you to manage your databases, tables, and records seamlessly.
