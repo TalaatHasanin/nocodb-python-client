@@ -1,6 +1,7 @@
 from typing import List, Union
 
 from pynoco.source import Source
+from pynoco.table import Table
 
 
 class Base:
@@ -89,6 +90,18 @@ class Base:
                 raise ValueError(f'source must be either a string of source id or a Source object')
         else:
             raise Exception(f'There are no sources connected to {self.title}')
+
+    def create_table(self, table_name: str, columns: List[dict], **kwargs):
+        table = self.api.post(
+            f'/meta/bases/{self.id}/tables',
+            data={
+                'table_name': table_name,
+                'columns': columns,
+                **kwargs
+            }
+        ).json()
+
+        return Table(self.client, **table)
 
 
 class Bases:
