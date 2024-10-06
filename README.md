@@ -113,9 +113,12 @@ To delete a base, use the following command:
 client.bases.drop('p#######')
 ```
 
-## Contributing
+## 🙋‍♀️ Contributing and developing
 
 Contributions are welcome! If you have suggestions or improvements, please create a pull request or open an issue.
+
+Check out the <b>[contributing guide](https://github.com/TalaatHasanin/nocodb-python-client/blob/main/README_dev.md)</b>
+to set up your development environment and start building.
 
 ## License
 
